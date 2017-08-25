@@ -20,7 +20,8 @@ function main {
   if cd "$shome/vendor/bless"; then
     git fetch
     git reset --hard
-    git checkout 0.2.0
+    git checkout master
+    git reset --hard 0.2.0
   fi
 }
 
