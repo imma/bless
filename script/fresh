@@ -8,6 +8,10 @@ function main {
     return 0
   fi
 
+  if [[ ! -d "$shome/vendor/bless" ]]; then
+    return 0
+  fi
+
   return 1
 }
 

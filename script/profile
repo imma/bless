@@ -6,7 +6,7 @@ function _bless_profile {
   #export ANSIBLE_ROLES_PATH="$shome/roles${ANSIBLE_ROLES_PATH:+:${ANSIBLE_ROLES_PATH}}"
   #export ANSIBLE_LIBRARY="$shome/library${ANSIBLE_LIBRARY:+:${ANSIBLE_LIBRARY}}"
 
-  BLESS_VERSION='0.0.1'
+  BLESS_VERSION='0.2.0'
   BLESSCLIENT_VERSION='0.0.1'
 }
 
