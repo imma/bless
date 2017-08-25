@@ -7,6 +7,7 @@ function _bless_profile {
   #export ANSIBLE_LIBRARY="$shome/library${ANSIBLE_LIBRARY:+:${ANSIBLE_LIBRARY}}"
 
   BLESS_VERSION='0.0.1'
+  BLESSCLIENT_VERSION='0.0.1'
 }
 
 _bless_profile

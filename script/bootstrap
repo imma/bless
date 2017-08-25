@@ -4,7 +4,10 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  uname -a
+  mkdir -p "$shome/vendor"
+  git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
+  block compile virtualenv
+  "$shome/vendor/virtualenv/bin/pip" install -e "$shome/vendor/blessclient"
 }
 
 main "$@"

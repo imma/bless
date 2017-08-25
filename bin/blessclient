@@ -4,11 +4,8 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  if [[ -x "$shome/vendor/virtualenv/bin/blessclient" ]]; then
-    return 0
-  fi
-
-  return 1
+  export PYTHONPATH="$shome/vendor/blessclient/blessclient"
+  exec "$shome/vendor/virtualenv/bin/blessclient" "$@"
 }
 
-source sub "$BASH_SOURCE" "$@"
+main "$@"
