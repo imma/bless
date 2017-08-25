@@ -4,7 +4,9 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
+  export PATH="$(python -m site --user-base)/bin:$PATH"
   export PYTHONPATH="$shome/vendor/blessclient/blessclient"
+
   exec "$shome/vendor/virtualenv/bin/blessclient" "$@"
 }
 

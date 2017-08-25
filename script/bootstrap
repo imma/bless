@@ -4,6 +4,13 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
+  case "$(uname -s)" in
+    Darwin)
+      PATH="$(python -m site --user-base)/bin:$PATH"
+      export PYTHON=python PIP=pip VENV=virtualenv
+      ;;
+  esac
+
   mkdir -p "$shome/vendor"
   git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
   block compile virtualenv
