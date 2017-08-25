@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  if echo "$@" | grep -q '\.blessed$'; then
+    "$shome/bin/blessclient"
+  fi
+
+  unalias ssh &> /dev/null
+  BLESS_COMPLETE=1 ssh "$@"
+}
+
+main "$@"
