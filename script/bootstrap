@@ -12,9 +12,6 @@ function main {
   esac
 
   mkdir -p "$shome/vendor"
-  git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
-  block compile virtualenv
-  "$shome/vendor/virtualenv/bin/pip" install -e "$shome/vendor/blessclient"
 
   git clone https://github.com/Netflix/bless "$shome/vendor/bless"
   if cd "$shome/vendor/bless"; then
@@ -22,7 +19,15 @@ function main {
     git reset --hard
     git checkout master
     git reset --hard 0.2.0
+    block compile virtualenv
+    source vendor/virtualenv/bin/activate
+    make develop 
+    make test
   fi
+
+  git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
+  block compile virtualenv
+  "$shome/vendor/virtualenv/bin/pip" install -e "$shome/vendor/blessclient"
 }
 
 main "$@"
