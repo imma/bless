@@ -4,15 +4,15 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  if [[ -x "$shome/vendor/virtualenv/bin/blessclient" ]]; then
-    return 0
+  if [[ ! -x "$shome/vendor/virtualenv/bin/blessclient" ]]; then
+    return 1
   fi
 
   if [[ ! -d "$shome/vendor/bless" ]]; then
-    return 0
+    return 1
   fi
 
-  return 1
+  return 0
 }
 
 source sub "$BASH_SOURCE" "$@"
