@@ -9,7 +9,7 @@ function main {
 
   case "$(uname -s)" in
     Linux)
-      ${NOSUDO} sudo aptitude install -y python-tk
+      ${NOSUDO} sudo aptitude install -y python-dev python-tk
       ;;
   esac
 
