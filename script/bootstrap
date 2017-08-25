@@ -9,6 +9,9 @@ function main {
       PATH="$(python -m site --user-base)/bin:$PATH"
       export PYTHON=python PIP=pip VENV=virtualenv
       ;;
+    Linux)
+      pkg ensure x11/py-Tk
+      ;;
   esac
 
   mkdir -p "$shome/vendor"
