@@ -26,8 +26,10 @@ function main {
   fi
 
   git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
-  block compile virtualenv
-  "$shome/vendor/virtualenv/bin/pip" install -e "$shome/vendor/blessclient"
+  if cd "$shome/vendor/blessclient"; then
+    block compile virtualenv
+    "$shome/vendor/bless/vendor/virtualenv/bin/pip" install -e .
+  fi
 }
 
 main "$@"
