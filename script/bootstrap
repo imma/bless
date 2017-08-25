@@ -10,7 +10,14 @@ function main {
       export PYTHON=python PIP=pip VENV=virtualenv
       ;;
     Linux)
-      pkg ensure x11/py-Tk
+			for PYTHON_VERSION_DEFAULT in 36 27; do
+				rm -rf "$WRKOBJDIR"
+
+				export PYTHON_VERSION_DEFAULT
+
+				pkg clean x11/py-Tk
+				pkg ensure x11/py${PYTHON_VERSION_DEFAULT}-Tk x11/py-Tk
+			done
       ;;
   esac
 
