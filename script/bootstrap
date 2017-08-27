@@ -27,11 +27,11 @@ function main {
     make test
   fi
 
-  git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
-  if cd "$shome/vendor/blessclient"; then
-    block compile virtualenv
-    "$shome/vendor/bless/vendor/virtualenv/bin/pip" install -e .
-  fi
+  #git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
+  #if cd "$shome/vendor/blessclient"; then
+  #  block compile virtualenv
+  #  "$shome/vendor/bless/vendor/virtualenv/bin/pip" install -e .
+  #fi
 }
 
 main "$@"

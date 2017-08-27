@@ -4,10 +4,6 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  if [[ ! -x "$shome/vendor/virtualenv/bin/blessclient" ]]; then
-    return 1
-  fi
-
   if [[ ! -d "$shome/vendor/bless" ]]; then
     return 1
   fi

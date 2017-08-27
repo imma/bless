@@ -5,9 +5,9 @@ function main {
   source "$shome/script/profile"
 
   export PATH="$(python -m site --user-base)/bin:$PATH"
-  export PYTHONPATH="$shome/vendor/blessclient/blessclient"
 
-  exec "$shome/vendor/blessclient/vendor/virtualenv/bin/blessclient" --config "$shome/etc/blessclient.cfg" "$@"
+  source "$shome/vendor/bless/vendor/virtualenv/bin/activate"
+  exec "$shome/vendor/bless/bless_client/bless_client.py" --config "$shome/etc/blessclient.cfg" "$@"
 }
 
 main "$@"

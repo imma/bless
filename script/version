@@ -4,12 +4,10 @@ function version {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local ver_blessclient="$BLESSCLIENT_VERSION"
   local ver_bless="$BLESS_VERSION"
   jq -n \
-    --arg blessclient "$ver_blessclient" \
     --arg bless "$ver_bless" \
-      '{blessclient: $blessclient, bless: $bless}'
+      '{bless: $bless}'
 }
 
 version "$@"
