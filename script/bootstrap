@@ -4,16 +4,6 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  case "$(uname -s)" in
-    Darwin)
-      PATH="$(python -m site --user-base)/bin:$PATH"
-      export PYTHON=python PIP=pip VENV=virtualenv
-      ;;
-    Linux)
-      ${NOSUDO} sudo aptitude install -y python-dev python-tk
-      ;;
-  esac
-
   mkdir -p "$shome/vendor"
 
   git clone https://github.com/Netflix/bless "$shome/vendor/bless"
@@ -22,7 +12,19 @@ function main {
     git reset --hard
     git checkout master
     git reset --hard 0.2.0
-    block compile virtualenv
+
+    case "$(uname -s)" in
+      Darwin)
+        PATH="$(python -m site --user-base)/bin:$PATH"
+        export PYTHON=python PIP=pip VENV=virtualenv
+        block compile virtualenv
+        ;;
+      Linux)
+        ${NOSUDO} sudo aptitude install -y python-dev python-tk
+        block compile virtualenv27
+        ;;
+    esac
+
     source vendor/virtualenv/bin/activate
     make develop 
     make test
