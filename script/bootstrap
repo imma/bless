@@ -4,10 +4,11 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  PATH="$(python -m site --user-base)/bin:$PATH"
-  export PYTHON=python PIP=pip VENV=virtualenv
-
   case "$(uname -s)" in
+    Darwin)
+      PATH="$(python -m site --user-base)/bin:$PATH"
+      export PYTHON=python PIP=pip VENV=virtualenv
+      ;;
     Linux)
       ${NOSUDO} sudo aptitude install -y python-dev python-tk
       ;;
