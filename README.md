@@ -1,0 +1,1 @@
+content/bless.md
