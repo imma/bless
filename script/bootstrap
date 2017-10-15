@@ -24,6 +24,7 @@ function main {
         block compile virtualenv27
         ;;
       Amazon)
+        ${NOSUDO} sudo yum install -y python-devel
         block compile virtualenv27
         ;;
     esac
