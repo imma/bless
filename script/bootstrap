@@ -13,14 +13,17 @@ function main {
     git checkout master
     git reset --hard 0.2.0
 
-    case "$(uname -s)" in
+    case "${DISTRIB_ID}" in
       Darwin)
         PATH="$(python -m site --user-base)/bin:$PATH"
         export PYTHON=python PIP=pip VENV=virtualenv
         block compile virtualenv
         ;;
-      Linux)
+      Ubuntu)
         ${NOSUDO} sudo aptitude install -y python-dev python-tk
+        block compile virtualenv27
+        ;;
+      Amazon)
         block compile virtualenv27
         ;;
     esac
@@ -29,12 +32,6 @@ function main {
     make develop 
     make test
   fi
-
-  #git clone https://github.com/lyft/python-blessclient "$shome/vendor/blessclient" || true
-  #if cd "$shome/vendor/blessclient"; then
-  #  block compile virtualenv
-  #  "$shome/vendor/bless/vendor/virtualenv/bin/pip" install -e .
-  #fi
 }
 
 main "$@"
