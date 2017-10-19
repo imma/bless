@@ -23,7 +23,7 @@ function main {
         ${NOSUDO} sudo aptitude install -y python-dev python-tk
         block compile virtualenv27
         ;;
-      Amazon)
+      Amazon|CentOS)
         ${NOSUDO} sudo yum install -y python-devel
         block compile virtualenv27
         ;;
